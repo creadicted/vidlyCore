@@ -14,6 +14,8 @@
                 <li><a asp-area="" asp-controller="Customers" asp-action="Index">Customers</a></li>
                 <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
             </ul>
+            @await Html.PartialAsync("_LoginPartial")
+
         </div>
     </div>
 </div>
