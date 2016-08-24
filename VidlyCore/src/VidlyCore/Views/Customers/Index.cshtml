@@ -1,0 +1,31 @@
+﻿@model IEnumerable<VidlyCore.Models.Customer>
+@{
+    ViewData["Title"] = "Customers";
+}
+<h1>Customers</h1>
+
+@if (!Model.Any())
+{
+    <p>There are no customers.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped table-hover">
+        <caption>Customer</caption>
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Name, "Details", "Customers", new {id = item.Id}, null)</td>
+
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
