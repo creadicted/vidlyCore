@@ -8,8 +8,8 @@ using VidlyCore.Data;
 namespace VidlyCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160824213033_AddMembershipType")]
-    partial class AddMembershipType
+    [Migration("20160824220624_PopulateMembershipTypes")]
+    partial class PopulateMembershipTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -198,7 +198,7 @@ namespace VidlyCore.Data.Migrations
 
                     b.Property<byte>("DiscountRate");
 
-                    b.Property<byte>("DurationInMonth");
+                    b.Property<byte>("DurationInMonths");
 
                     b.Property<short>("SignUpFee");
 

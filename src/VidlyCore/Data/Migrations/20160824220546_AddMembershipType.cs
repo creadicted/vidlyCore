@@ -16,7 +16,7 @@ namespace VidlyCore.Data.Migrations
                     Id = table.Column<byte>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DiscountRate = table.Column<byte>(nullable: false),
-                    DurationInMonth = table.Column<byte>(nullable: false),
+                    DurationInMonths = table.Column<byte>(nullable: false),
                     SignUpFee = table.Column<short>(nullable: false)
                 },
                 constraints: table =>

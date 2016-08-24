@@ -12,7 +12,7 @@ namespace VidlyCore.Models
 
         public short SignUpFee { get; set; }
 
-        public byte DurationInMonth { get; set; }
+        public byte DurationInMonths { get; set; }
 
         public byte DiscountRate { get; set; }
     }
