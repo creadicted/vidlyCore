@@ -8,9 +8,10 @@ using VidlyCore.Data;
 namespace VidlyCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160824212436_IsSubscribedToNewsletter")]
+    partial class IsSubscribedToNewsletter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -179,31 +180,11 @@ namespace VidlyCore.Data.Migrations
 
                     b.Property<bool>("IsSubscribedToNewsletter");
 
-                    b.Property<byte>("MembershipTypeId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MembershipTypeId");
-
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("VidlyCore.Models.MembershipType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte>("DiscountRate");
-
-                    b.Property<byte>("DurationInMonth");
-
-                    b.Property<short>("SignUpFee");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MembershipType");
                 });
 
             modelBuilder.Entity("VidlyCore.Models.Movie", b =>
@@ -252,14 +233,6 @@ namespace VidlyCore.Data.Migrations
                     b.HasOne("VidlyCore.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("VidlyCore.Models.Customer", b =>
-                {
-                    b.HasOne("VidlyCore.Models.MembershipType", "MembershipType")
-                        .WithMany()
-                        .HasForeignKey("MembershipTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
