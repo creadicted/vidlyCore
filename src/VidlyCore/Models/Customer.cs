@@ -13,6 +13,8 @@ namespace VidlyCore.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+        
+        public DateTime? Birthdate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
 

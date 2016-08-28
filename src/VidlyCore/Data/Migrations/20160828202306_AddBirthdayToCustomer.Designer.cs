@@ -8,9 +8,10 @@ using VidlyCore.Data;
 namespace VidlyCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160828202306_AddBirthdayToCustomer")]
+    partial class AddBirthdayToCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -177,7 +178,7 @@ namespace VidlyCore.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("Birthdate");
+                    b.Property<DateTime>("Birthdate");
 
                     b.Property<bool>("IsSubscribedToNewsletter");
 
