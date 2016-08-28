@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using VidlyCore.Data;
 using VidlyCore.Models;
 using VidlyCore.ViewModel;
 
@@ -10,10 +13,24 @@ namespace VidlyCore.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController(ApplicationDbContext context)
+        {
+            _context = context;
+
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
         // GET: Movies/Index/
         public ActionResult Index()
         {
-            var movies = GetMovies();
+            var movies = _context.Movies.Include(c => c.Genre).ToList();
 
             return View(movies);
         }
@@ -22,14 +39,15 @@ namespace VidlyCore.Controllers
         [Route("Movies/Details/{id}")]
         public IActionResult Details(int id)
         {
-            var movies = GetMovies().SingleOrDefault(c => c.Id == id);
-            if (movies == null)
+            var movie = _context.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == id); 
+
+            if (movie == null)
             {
                 return NotFound();
 
             }
 
-            return View(movies);
+            return View(movie);
         }
 
         // GET: Movies/Random/
@@ -73,23 +91,6 @@ namespace VidlyCore.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(String.Format("{0}/{1}", year, month));
-        }
-
-        private IEnumerable<Movie> GetMovies()
-        {
-            return new List<Movie>
-            {
-                new Movie
-                {
-                    Id = 1,
-                    Name = "Shreck"
-                },
-                new Movie
-                {
-                    Id = 2,
-                    Name = "Wall-e"
-                }
-            };
         }
     }
 }

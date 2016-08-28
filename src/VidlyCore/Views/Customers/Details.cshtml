@@ -7,7 +7,7 @@
     <li><strong>Membership Type:</strong> @Model.MembershipType.Name</li>
     @if (Model.Birthdate != null)
     {
-        <li><strong>Birthday:</strong> @Model.Birthdate</li>
+        <li><strong>Birthday:</strong> @Model.Birthdate.ToString()</li>
     }
 
 </ul>
