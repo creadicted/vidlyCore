@@ -12,17 +12,22 @@ namespace VidlyCore.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Movie Title")]
         public string Name { get; set; }
 
         [Required]
         public Genres Genre { get; set; }
 
+        [Display(Name = "Genre")]
         public byte GenreId { get; set; }
 
+        [Display(Name = "Added")]
         public DateTime DateAdded { get; set; } = DateTime.UtcNow;
 
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
+        [Display(Name = "Number In Stock")]
         public byte NumberInStock { get; set; }
     }
 }

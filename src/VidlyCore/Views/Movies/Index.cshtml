@@ -3,6 +3,9 @@
     ViewData["Title"] = "Movies";
 }
 <h2>Movies</h2>
+
+<a asp-area="" class="btn btn-primary" asp-controller="Movies" asp-action="New">New Movie</a>
+
 <table class="table table-bordered table-hover">
     <caption>Movie</caption>
     <thead>
@@ -15,7 +18,7 @@
     @foreach (var movie in Model)
     {
         <tr>
-            <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+            <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
             <td>@movie.Genre.Name</td>
         </tr>
     }

@@ -18,7 +18,6 @@ namespace VidlyCore.Models
         [Display(Name = "Date of Birth")]
         public DateTime? Birthdate { get; set; }
 
-
         [Display(Name = "Subscribed to Newsletter?")]
         public bool IsSubscribedToNewsletter { get; set; }
 

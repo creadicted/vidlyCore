@@ -1,8 +1,9 @@
 ﻿@model VidlyCore.ViewModel.CustomerFormViewModel
 @{
-    ViewData["Title"] = "Customer Details";
+    ViewBag.Title = Model.Title;
 }
-<h2>New Customer</h2>
+
+<h2>@Model.Title</h2>
 
 <div class="row">
     <div class="col-md-8">

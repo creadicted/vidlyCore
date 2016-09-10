@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VidlyCore.Data;
-using VidlyCore.Data.Migrations;
-using VidlyCore.Models;
-using VidlyCore.ViewModel;
-
-namespace VidlyCore.Controllers
+﻿namespace VidlyCore.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using VidlyCore.Data;
+    using VidlyCore.Data.Migrations;
+    using VidlyCore.Models;
+    using VidlyCore.ViewModel;
+
     public class CustomersController : Controller
     {
         private ApplicationDbContext _context;
@@ -23,7 +23,14 @@ namespace VidlyCore.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
-        } 
+        }
+
+        public IActionResult Index()
+        {
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+
+            return View(customers);
+        }
 
         /// <summary>
         /// View Result to display a Form to create a new Customer.
@@ -40,9 +47,9 @@ namespace VidlyCore.Controllers
 
             return View("CustomerForm", viewModel);
         }
-        
+
         /// <summary>
-        /// View Result from HttpPost that saves user data to a new or existing user.
+        /// View Result from HttpPost that saves customer data to a new or existing customer.
         /// </summary>
         /// <param name="customer">The customer send from the Form.</param>
         /// <returns>A Redirect to the Customer Index</returns>
@@ -69,15 +76,7 @@ namespace VidlyCore.Controllers
             return RedirectToAction(nameof(Index), "Customers");
         }
 
-
-
-        public IActionResult Index()
-        {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
-        }
-
+        
 
         // GET: /Customers/Details/id
         [Route("Customers/Details/{id}")]
