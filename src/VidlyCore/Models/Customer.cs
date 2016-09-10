@@ -12,14 +12,19 @@ namespace VidlyCore.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Customer Name")]
         public string Name { get; set; }
         
+        [Display(Name = "Date of Birth")]
         public DateTime? Birthdate { get; set; }
 
+
+        [Display(Name = "Subscribed to Newsletter?")]
         public bool IsSubscribedToNewsletter { get; set; }
 
         public MembershipType MembershipType { get; set; }
 
+        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
     }
 }

@@ -1,0 +1,61 @@
+﻿@model VidlyCore.ViewModel.CustomerFormViewModel
+@{
+    ViewData["Title"] = "Customer Details";
+}
+<h2>New Customer</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <form asp-controller="Customers" asp-action="Save" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Customer.Name" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Customer.Name" class="form-control" />
+                        <span asp-validation-for="Customer.Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Customer.Birthdate" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Customer.Birthdate" asp-format="{0:d MMM yyyy}" class="form-control" />
+                        <span asp-validation-for="Customer.Birthdate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Customer.MembershipTypeId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+
+                        <select asp-for="Customer.MembershipTypeId"
+                                asp-items="@(new SelectList(Model.MembershipTypes, "Id", "Name"))" class="form-control">
+                            <option>Select Membership Type</option>
+                        </select>
+                        <span asp-validation-for="Customer.MembershipTypeId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <label asp-for="Customer.IsSubscribedToNewsletter">
+                                <input asp-for="Customer.IsSubscribedToNewsletter" />
+                                @Html.DisplayNameFor(m => m.Customer.IsSubscribedToNewsletter)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                @Html.HiddenFor(m=>m.Customer.Id)
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary">Save Customer</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

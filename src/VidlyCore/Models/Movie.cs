@@ -8,7 +8,6 @@ namespace VidlyCore.Models
 {
     public class Movie
     {
-
         public int Id { get; set; }
 
         [Required]
@@ -20,7 +19,7 @@ namespace VidlyCore.Models
 
         public byte GenreId { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; } = DateTime.UtcNow;
 
         public DateTime ReleaseDate { get; set; }
 

@@ -4,6 +4,9 @@
 }
 <h1>Customers</h1>
 
+<a asp-area="" class="btn btn-primary" asp-controller="Customers" asp-action="New">New Customer</a>
+
+
 @if (!Model.Any())
 {
     <p>There are no customers.</p>
@@ -22,7 +25,7 @@ else
         @foreach (var customer in Model)
         {
             <tr>
-                <td>@Html.ActionLink(customer.Name, "Details", "Customers", new {id = customer.Id}, null)</td>
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new {id = customer.Id}, null)</td>
                 <td>@customer.MembershipType.Name</td>
             </tr>
         }
