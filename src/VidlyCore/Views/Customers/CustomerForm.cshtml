@@ -9,21 +9,17 @@
     <div class="col-md-8">
         <section>
             <form asp-controller="Customers" asp-action="Save" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <div asp-validation-summary="All" class="text-danger"></div>
+                
+                <div asp-validation-summary="None" class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Please fix the errors below.
+                </div>
 
                 <div class="form-group">
                     <label asp-for="Customer.Name" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
                         <input asp-for="Customer.Name" class="form-control" />
-                        <span asp-validation-for="Customer.Name" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Customer.Birthdate" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Customer.Birthdate" asp-format="{0:d MMM yyyy}" class="form-control" />
-                        <span asp-validation-for="Customer.Birthdate" class="text-danger"></span>
+                        <span asp-validation-for="Customer.Name" class="text-danger help-block"></span>
                     </div>
                 </div>
 
@@ -35,7 +31,15 @@
                                 asp-items="@(new SelectList(Model.MembershipTypes, "Id", "Name"))" class="form-control">
                             <option>Select Membership Type</option>
                         </select>
-                        <span asp-validation-for="Customer.MembershipTypeId" class="text-danger"></span>
+                        <span asp-validation-for="Customer.MembershipTypeId" asp-validat class="text-danger help-block"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Customer.Birthdate" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Customer.Birthdate" asp-format="{0:yyyy-MM-dd}" class="form-control" />
+                        <span asp-validation-for="Customer.Birthdate" class="text-danger help-block"></span>
                     </div>
                 </div>
 
@@ -50,7 +54,8 @@
                     </div>
                 </div>
 
-                @Html.HiddenFor(m=>m.Customer.Id)
+                <input asp-for="Customer.Id" />
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <button type="submit" class="btn btn-primary">Save Customer</button>
@@ -60,3 +65,7 @@
         </section>
     </div>
 </div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

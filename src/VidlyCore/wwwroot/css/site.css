@@ -48,3 +48,7 @@ textarea {
     display: none
   }
 }
+
+.validation-summary-valid { display:none; visibility: hidden;}
+
+.validation-summary.validation-summary-error { display: block; }
