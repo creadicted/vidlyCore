@@ -25,6 +25,10 @@
             _context.Dispose();
         }
 
+        /// <summary>
+        /// Function to load a list of customers.
+        /// </summary>
+        /// <returns>The View.</returns>
         public IActionResult Index()
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
@@ -33,9 +37,9 @@
         }
 
         /// <summary>
-        /// View Result to display a Form to create a new Customer.
+        /// Function to display a form to create a new Customer.
         /// </summary>
-        /// <returns>The Customer Form with the ViewModel.</returns>
+        /// <returns>The Customer Form.</returns>
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipType.ToList();

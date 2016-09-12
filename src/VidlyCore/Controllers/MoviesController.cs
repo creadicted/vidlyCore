@@ -26,8 +26,10 @@ namespace VidlyCore.Controllers
             _context.Dispose();
         }
 
-
-        // GET: Movies/Index/
+        /// <summary>
+        /// Function to load a list of movies.
+        /// </summary>
+        /// <returns>The View.</returns>
         public ActionResult Index()
         {
             var movies = _context.Movies.Include(c => c.Genre).ToList();
@@ -36,14 +38,17 @@ namespace VidlyCore.Controllers
         }
 
         /// <summary>
-        /// View Result to display a Form to create a new Movie.
+        /// Function to display a form to create a new Movie.
         /// </summary>
-        /// <returns>The Movie Form with the ViewModel.</returns>
+        /// <returns>The View.</returns>
         public ActionResult New()
         {
+            var genres = _context.Genres.ToList();
+
             var viewModel = new MovieFormViewModel()
             {
-                Genres = _context.Genres.ToList()
+                Movie = new Movie(),
+                Genres = genres
             };
 
             return View("MovieForm", viewModel);
@@ -55,8 +60,20 @@ namespace VidlyCore.Controllers
         /// <param name="movie">The movie send from the Form.</param>
         /// <returns>A Redirect to the Movie Index</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
             if (movie.Id == 0)
             {
                 _context.Movies.Add(movie);
@@ -66,6 +83,7 @@ namespace VidlyCore.Controllers
                 var MovieInDb = _context.Movies.Single(c => c.Id == movie.Id);
 
                 MovieInDb.Name = movie.Name;
+                MovieInDb.Genre = movie.Genre;
                 MovieInDb.GenreId = movie.GenreId;
                 MovieInDb.ReleaseDate = movie.ReleaseDate;
                 MovieInDb.NumberInStock = movie.NumberInStock;
@@ -77,7 +95,7 @@ namespace VidlyCore.Controllers
         }
 
         /// <summary>
-        /// Function to load a vovie by Id and present an edit view.
+        /// Function to load a Movie by Id and present an edit view.
         /// </summary>
         /// <param name="id">The Movies Id</param>
         /// <returns>ViewResult that shows a view to edit a specific Movie.</returns>
