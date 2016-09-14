@@ -46,7 +46,6 @@
 
             var viewModel = new CustomerFormViewModel
             {
-                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
@@ -64,9 +63,8 @@
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new CustomerFormViewModel
+                var viewModel = new CustomerFormViewModel(customer)
                 {
-                    Customer = customer,
                     MembershipTypes = _context.MembershipType.ToList()
                 };
 
@@ -93,23 +91,6 @@
             return RedirectToAction(nameof(Index), "Customers");
         }
 
-        
-
-        // GET: /Customers/Details/id
-        [Route("Customers/Details/{id}")]
-        public IActionResult Details(int id)
-        {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
-
-            if (customer == null)
-            {
-                return NotFound();
-
-            }
-
-            return View(customer);
-        }
-
         public IActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -119,9 +100,8 @@
                 return NotFound();
             }
 
-            var viewModel = new CustomerFormViewModel
+            var viewModel = new CustomerFormViewModel(customer)
             {
-                Customer = customer,
                 MembershipTypes = _context.MembershipType.ToList()
             };
 
