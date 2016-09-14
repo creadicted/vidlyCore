@@ -16,49 +16,42 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Movie.Name" class="col-md-2 control-label"></label>
+                    <label asp-for="Name" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Movie.Name" class="form-control" />
-                        <span asp-validation-for="Movie.Name" class="text-danger"></span>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Movie.ReleaseDate" class="col-md-2 control-label"></label>
+                    <label asp-for="ReleaseDate" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Movie.ReleaseDate" asp-format="{0:d MMM yyyy}" class="form-control" />
-                        <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
+                        <input asp-for="ReleaseDate" asp-format="{0:d MMM yyyy}" class="form-control" />
+                        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Movie.DateAdded" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input disabled="disabled" asp-for="Movie.DateAdded" asp-format="{0:d MMM yyyy}" class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Movie.GenreId" class="col-md-2 control-label"></label>
+                    <label asp-for="GenreId" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
 
-                        <select asp-for="Movie.GenreId"
+                        <select asp-for="GenreId"
                                 asp-items="@(new SelectList(Model.Genres, "Id", "Name"))" class="form-control">
                             <option>Select Genre</option>
                         </select>
-                        <span asp-validation-for="Movie.GenreId" class="text-danger"></span>
+                        <span asp-validation-for="GenreId" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Movie.NumberInStock" class="col-md-2 control-label"></label>
+                    <label asp-for="NumberInStock" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Movie.NumberInStock" class="form-control" />
-                        <span asp-validation-for="Movie.NumberInStock" class="text-danger"></span>
+                        <input asp-for="NumberInStock" class="form-control" />
+                        <span asp-validation-for="NumberInStock" class="text-danger"></span>
                     </div>
                 </div>
 
-                <input asp-for="Movie.Id" />
+                <input asp-for="Id" />
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
