@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-VidlyCore-4e072e88-eeb4-448b-acd9-7c60d430b244",
 
   "dependencies": {
@@ -42,7 +42,8 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "AutoMapper": "4.1.1"
   },
 
   "tools": {

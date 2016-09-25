@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using VidlyCore.Dtos;
 
 namespace VidlyCore.Models
 {
@@ -11,6 +12,8 @@ namespace VidlyCore.Models
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            var customerDto = (CustomerDto) validationContext.ObjectInstance;
+
             var customer = (Customer) validationContext.ObjectInstance;
 
             if (customer.MembershipTypeId == MembershipType.Unknown || 
